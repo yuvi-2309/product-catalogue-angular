@@ -1,9 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { of } from 'rxjs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { HomeComponent } from './home.component';
 import {
@@ -92,7 +93,7 @@ describe('HomeComponent', () => {
         ProductButtonComponent,
         FilterPipe,
       ],
-      imports: [MatMenuModule, FormsModule, HttpClientModule, MatTooltipModule],
+      imports: [MatMenuModule, FormsModule, HttpClientModule, MatTooltipModule, MatProgressSpinnerModule],
       providers: [CartService, SharedService],
     }).compileComponents();
 
@@ -112,6 +113,15 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should hide the spinner after 1.5 seconds', fakeAsync(() => {
+    expect(component.showSpinner).toBe(true); 
+    component.ngOnInit();
+    tick(2000);
+    
+    fixture.detectChanges();
+    expect(component.showSpinner).toBe(false); 
+  }));
 
   it('should fetch products and set initial values', () => {
     component.ngOnInit();

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 import { AuthenticationService } from '../../Service/authentication/authentication.service';
 import { CartService } from 'src/app/Service/cartService/cart.service';
@@ -16,15 +17,21 @@ export class HomeComponent implements OnInit {
   searchKey: string = '';
   productButtonStates: boolean[] = [];
   selectedFilter: string = '';
+  showSpinner: boolean = true
 
   constructor(
     private products: AuthenticationService,
     private cartService: CartService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
   ) {}
 
   // Function to get the products from the authentication Service and to get the search key from the cart service
   ngOnInit(): void {
+
+    setTimeout(() => {
+      this.showSpinner = false;
+    }, 1500);
+
     this.products.getProduct().subscribe((response) => {
       this.filterCategory = response;
       this.productList = response;
@@ -40,7 +47,7 @@ export class HomeComponent implements OnInit {
       this.searchKey = value;
     });
   }
-  
+
   // Function to add a product to cart
   addToCart(product: Product): void {
     this.cartService.addToCart(product);

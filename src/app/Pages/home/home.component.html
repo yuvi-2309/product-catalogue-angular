@@ -40,43 +40,47 @@
 </div>
 
 <div class="container">
-  <div class="row">
+  <div class="row" *ngIf="showSpinner === false">
     <ng-container
-      *ngFor="
-        let product of filterCategory | filter : searchKey : 'title' as result;
-        let index = index
-      "
+      *ngIf="filterCategory | filter : searchKey : 'title' as result"
     >
-      <div class="card col-md-3">
-        <img src="{{ product.image }}" alt="" class="product-image" />
-        <h5 matTooltip="{{ product.title }}" matTooltipPosition="right">
-          {{ product.title }}
-        </h5>
-        <p
-          matTooltip="{{ product.description | titlecase }}"
-          matTooltipPosition="right"
-        >
-          {{ product.description | titlecase }}
-        </p>
-        <a (click)="navigateToProduct(product)" class="link">View more</a>
-        <p>
-          <strong>Price:</strong> ${{ product.price }}
-          <s class="small text-muted"
-            >${{ product.price + 50 | number : "1.2-2" }}</s
+      <ng-container *ngFor="let product of result; let index = index">
+        <div class="card col-md-3">
+          <img src="{{ product.image }}" alt="" class="product-image" />
+          <h5 matTooltip="{{ product.title }}" matTooltipPosition="right">
+            {{ product.title }}
+          </h5>
+          <p
+            matTooltip="{{ product.description | titlecase }}"
+            matTooltipPosition="right"
           >
-        </p>
-        <div class="product-buttons">
-          <app-product-button
-            [added]="productButtonStates[index]"
-            [product]="product"
-            (addToCartClicked)="addToCart($event)"
-          ></app-product-button>
-          <app-wishList-button [product]="product"></app-wishList-button>
+            {{ product.description | titlecase }}
+          </p>
+          <a (click)="navigateToProduct(product)" class="link">View more</a>
+          <p>
+            <strong>Price:</strong> ${{ product.price }}
+            <s class="small text-muted"
+              >${{ product.price + 50 | number : "1.2-2" }}</s
+            >
+          </p>
+          <div class="product-buttons">
+            <app-product-button
+              [added]="productButtonStates[index]"
+              [product]="product"
+              (addToCartClicked)="addToCart($event)"
+            ></app-product-button>
+            <app-wishList-button [product]="product"></app-wishList-button>
+          </div>
         </div>
-      </div>
-      <ng-container *ngIf="result.length === 0">
-        <app-no-product-found></app-no-product-found>
+      </ng-container>
+      <ng-container>
+        <app-no-product-found
+          *ngIf="result.length === 0"
+        ></app-no-product-found>
       </ng-container>
     </ng-container>
+  </div>
+  <div class="spinner" *ngIf="showSpinner">
+    <mat-spinner></mat-spinner>
   </div>
 </div>

@@ -83,6 +83,12 @@ p {
   justify-content: space-evenly;
 }
 
+.spinner {
+  position: absolute;
+  left: 45%;
+  top: 40%;
+}
+
 @media (max-width: 768px) {
   .sub-header {
     width: 100%;

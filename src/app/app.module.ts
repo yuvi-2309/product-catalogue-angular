@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -54,6 +55,7 @@ import { FilterPipe } from './Pipes/main';
     MatDialogModule,
     MatMenuModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
     ToastrModule.forRoot({
       timeOut: 2500,
       positionClass: 'toast-top-right',
