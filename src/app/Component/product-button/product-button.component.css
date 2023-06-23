@@ -1,0 +1,25 @@
+.btn {
+  margin-bottom: 0.625rem;
+  width: 6.25rem;
+  height: 3.125rem;
+  font-size: 0.875rem;
+  background-color: #fff;
+  border: 1px solid #ff3e6cb3;
+  color: #ff3e6c;
+}
+
+.btn:hover {
+  background-color: #ff3e6c;
+  color: #ffffff;
+}
+
+@media (max-width: 48rem) {
+  .btn {
+    padding: 0;
+    height: 1.875rem;
+    width: 3.125rem;
+    font-size: 0.625rem;
+    margin-top: 0.3125rem;
+    margin-right: 0.3125rem;
+  }
+}

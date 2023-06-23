@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="container">
+  <div class="card">
+    <div class="item-image">
+      <img [src]="product.image" alt="Item Image" />
+    </div>
+    <div class="item-info">
+      <h2>{{ product.title }}</h2>
+      <h4>
+        <strong>Price:</strong> ${{ product.price }}
+        <s class="small text-muted"
+          >${{ product.price + 50 | number : "1.2-2" }}</s
+        >
+      </h4>
+      <h5><strong>Category:</strong> {{ product.category | titlecase }}</h5>
+      <div>
+        <h5><strong>Description:</strong></h5>
+        <p>{{ product.description | titlecase }}</p>
+      </div>
+      <div>
+        <h5><strong>Rating:</strong></h5>
+        <p>
+          Rate: {{ product.rating.rate }} / 5 ({{ product.rating.count }}
+          reviews)
+        </p>
+      </div>
+      <div class="product-buttons">
+        <app-product-button
+          [product]="product"
+          (addToCartClicked)="addToCart($event)"
+        ></app-product-button>
+        <app-wishList-button [product]="product"></app-wishList-button>
+      </div>
+      <button class="btn btn-primary" (click)="navigateToPreviousRoute()">
+        <i class="fa fa-arrow-left"></i>Go back
+      </button>
+    </div>
+  </div>
+</div>

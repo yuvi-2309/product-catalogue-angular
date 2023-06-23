@@ -1,0 +1,82 @@
+<app-header></app-header>
+<div class="sub-header">
+  <div class="item">
+    <a [class.active]="selectedFilter === ''" (click)="filterProducts('')">
+      All products
+    </a>
+  </div>
+  <div class="item">
+    <a
+      [class.active]="selectedFilter === 'men\'s clothing'"
+      (click)="filterProducts('men\'s clothing')"
+    >
+      Men
+    </a>
+  </div>
+  <div class="item">
+    <a
+      [class.active]="selectedFilter === 'women\'s clothing'"
+      (click)="filterProducts('women\'s clothing')"
+    >
+      Women
+    </a>
+  </div>
+  <div class="item">
+    <a
+      [class.active]="selectedFilter === 'electronics'"
+      (click)="filterProducts('electronics')"
+    >
+      Electronics
+    </a>
+  </div>
+  <div class="item">
+    <a
+      [class.active]="selectedFilter === 'jewelery'"
+      (click)="filterProducts('jewelery')"
+    >
+      Jewelery
+    </a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <ng-container
+      *ngFor="
+        let product of filterCategory | filter : searchKey : 'title' as result;
+        let index = index
+      "
+    >
+      <div class="card col-md-3">
+        <img src="{{ product.image }}" alt="" class="product-image" />
+        <h5 matTooltip="{{ product.title }}" matTooltipPosition="right">
+          {{ product.title }}
+        </h5>
+        <p
+          matTooltip="{{ product.description | titlecase }}"
+          matTooltipPosition="right"
+        >
+          {{ product.description | titlecase }}
+        </p>
+        <a (click)="navigateToProduct(product)" class="link">View more</a>
+        <p>
+          <strong>Price:</strong> ${{ product.price }}
+          <s class="small text-muted"
+            >${{ product.price + 50 | number : "1.2-2" }}</s
+          >
+        </p>
+        <div class="product-buttons">
+          <app-product-button
+            [added]="productButtonStates[index]"
+            [product]="product"
+            (addToCartClicked)="addToCart($event)"
+          ></app-product-button>
+          <app-wishList-button [product]="product"></app-wishList-button>
+        </div>
+      </div>
+      <ng-container *ngIf="result.length === 0">
+        <app-no-product-found></app-no-product-found>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+.container {
+  display: flex;
+  justify-content: center;
+  min-height: 90vh;
+}
+
+.card {
+  margin: 1.5625rem;
+  padding: 1.5625rem;
+  display: flex;
+  align-items: center;
+  outline: 1px solid #00000033;
+  box-shadow: 0 0 3px #00000033;
+  width: 90vw;
+  min-height: 90vh;
+}
+
+.item-image {
+  margin-right: 1.25rem;
+  transition: all 0.5s ease;
+}
+
+.item-image img {
+  width: 14rem;
+  height: 14rem;
+}
+
+.item-info {
+  flex-grow: 1;
+}
+
+.item-info h2,
+.item-info h4,
+.item-info h5 {
+  margin-top: 0.625rem;
+}
+
+.item-info h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.item-info h4 {
+  font-size: 1.125rem;
+}
+
+.item-info h5 {
+  font-size: 1rem;
+}
+
+.item-info div {
+  margin-top: 1.25rem;
+}
+
+.item-info h5,
+.item-info p {
+  margin: 0;
+}
+
+.wishlist-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.product-buttons {
+  display: flex;
+}
+
+.product-buttons app-product-button {
+  margin-right: 1.25rem;
+}
+
+
+@media screen and (max-width: 768px) {
+  .card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .item-image {
+    margin-right: 0;
+    margin-bottom: 1.25rem;
+  }
+
+  .item-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  .item-info {
+    margin-top: 1.25rem;
+  }
+
+  .product-buttons {
+    flex-wrap: wrap;
+  }
+
+  .product-buttons app-product-button {
+    margin-right: 0;
+    margin-bottom: 1.25rem;
+  }
+}

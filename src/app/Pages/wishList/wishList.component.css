@@ -1,0 +1,174 @@
+:root {
+  font-size: 16px;
+}
+
+.product-image {
+  width: 15.625rem;
+  height: 15.625rem;
+  margin-top: 0.625rem;
+  margin-left: 1.5625rem;
+}
+
+h5,
+p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100ch;
+}
+
+.card {
+  margin: 1.25rem 3.125rem;
+  box-shadow: 0 0.125rem 0.125rem rgba(0, 0, 0, 0.2);
+}
+
+.card-no-items {
+  min-height: 84vh;
+  margin: 1.5625rem;
+  margin-bottom: 1.875rem;
+  padding: 1.5625rem;
+  box-shadow: 0 0 0.125rem rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  margin-top: 1.25rem;
+}
+
+.center img {
+  text-decoration: none;
+  color: inherit;
+  border: none;
+  outline: none;
+  height: 10rem;
+  width: 15.625rem;
+  margin: 1.25rem 0;
+}
+
+h4,
+h6 {
+  display: flex;
+  font-weight: 400;
+  justify-content: center;
+  align-items: center;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.center .btn {
+  font-size: 0.875rem;
+  margin-top: 1.25rem;
+  font-weight: 400;
+  padding: 0.75rem 4.5rem;
+  border-radius: 0.1875rem;
+}
+
+.title {
+  margin: 1.25rem;
+}
+
+.title-container {
+  display: flex;
+  justify-content: space-between;
+  border-color: #e7eaec;
+  border-style: none solid solid;
+  border-width: 0 0 0.1875rem;
+}
+
+.row {
+  display: flex;
+  min-height: 85vh;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.125rem rgba(0, 0, 0, 0.2);
+  margin-bottom: 1.25rem;
+}
+
+.product-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.button {
+  margin-bottom: 0.625rem;
+  width: 3.75rem;
+  height: 3.125rem;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+}
+
+@media screen and (max-width: 768px) {
+  .product-image {
+    width: 6.25rem;
+    height: 6.25rem;
+    margin-top: 0.625rem;
+    margin-left: 0;
+  }
+
+  .center img {
+    height: auto;
+    width: 100%;
+    margin: 1.25rem 0;
+  }
+
+  .card-no-items {
+    width: 18.75rem;
+    margin: 0.625rem 1.875rem;
+    margin-bottom: 1.25rem;
+    align-items: center;
+  }
+
+  .card {
+    width: 18.75rem;
+    margin: 0.625rem 2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .row {
+    display: block;
+    min-height: auto;
+    border: none;
+    box-shadow: none;
+    margin-bottom: 1.25rem;
+  }
+
+  .center .btn {
+    margin-top: 0.625rem;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.75rem;
+  }
+
+  .title-container {
+    border-style: none;
+    border-width: 0;
+  }
+
+  h4,
+  .h4 {
+    display: block;
+    text-align: center;
+    font-size: 0.75rem;
+  }
+
+  .btn-white {
+    font-size: 0.75rem;
+  }
+
+  .button {
+    width: 3.125rem;
+    height: 2.5rem;
+    font-size: 0.75rem;
+  }
+
+  h5,
+  p {
+    white-space: normal;
+    font-size: 0.625rem;
+    margin-left: 0.125rem;
+  }
+}

@@ -1,0 +1,42 @@
+<div class="header">
+  <div class="title">
+    <img src="../../../assets/online-shopping.png" alt="" routerLink="/home" />
+    <h1 routerLink="/home">Luxuria</h1>
+  </div>
+  <div class="search-bar">
+    <ng-container *ngIf="sharedService.isInputVisible">
+      <input
+        type="text"
+        placeholder="Search..."
+        [(ngModel)]="searchTerm"
+        (keyup)="search($event)"
+      />
+    </ng-container>
+
+    <button
+      routerLink="/cart"
+      class="btn"
+      matTooltip="Cart"
+      matTooltipPosition="below"
+    >
+      <i class="fas fa-cart-plus"></i>
+      <div class="badge bg-danger">{{ totalItem }}</div>
+    </button>
+    <div
+      class="wishList"
+      (click)="navigateToWishList()"
+      matTooltip="WishList"
+      matTooltipPosition="below"
+    >
+      WishList
+    </div>
+    <div>
+      <button mat-button [matMenuTriggerFor]="menu" class="user">
+        Yuvaraj
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="signOut()">Sign out</button>
+      </mat-menu>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+ul {
+  list-style-type: none;
+  padding-inline-start: 2.1875rem;
+}
+
+h1 {
+  font-size: 4.6875rem;
+  margin: 0.9375rem 0;
+  font-weight: bold;
+}
+
+.container {
+  height: 85vh;
+  width: 50rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 0rem;
+    margin-bottom: 1.25rem;
+  }
+}

@@ -1,0 +1,139 @@
+<app-header></app-header>
+<ng-container *ngIf="products.length != 0">
+  <div class="container">
+    <div class="wrapper wrapper-content animated fadeInRight">
+      <div class="row">
+        <div class="col-md-9">
+          <div class="ibox">
+            <div class="ibox-title">
+              <h5>Items in your cart</h5>
+              <button class="btn btn-white" routerLink="/home">
+                <i class="fa fa-arrow-left"></i> Go back
+              </button>
+            </div>
+            <div class="ibox-content">
+              <div class="table-responsive">
+                <table class="table shoping-cart-table">
+                  <tbody>
+                    <tr
+                      *ngFor="let item of products; let i = index"
+                      class="table-row"
+                    >
+                      <td width="90">
+                        <div class="cart-product-imitation">
+                          <img
+                            src="{{ item.image }}"
+                            alt=""
+                          />
+                        </div>
+                      </td>
+                      <td class="desc">
+                        <h3>
+                          <a
+                            (click)="navigateToProduct(item)"
+                            class="text-navy"
+                          >
+                            {{ item.title }}
+                          </a>
+                        </h3>
+                        <p class="small">
+                          {{ item.description }}
+                        </p>
+                        <div class="m-t-sm">
+                          <button
+                            (click)="removeItem(item)"
+                            class="btn btn-danger"
+                          >
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
+                        </div>
+                      </td>
+
+                      <td>
+                        ${{ item.price | number : "1.2-2" }}
+                        <s class="small text-muted"
+                          >${{ item.price + 50 | number : "1.2-2" }}</s
+                        >
+                      </td>
+                      <td width="120">
+                        <button (click)="decreaseQuantity(item)" class="btn">
+                          <i class="fas fa-minus"></i>
+                        </button>
+                        <span>
+                          {{ item.quantity }}
+                        </span>
+                        <button (click)="increaseQuantity(item)" class="btn">
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </td>
+                      <td>
+                        <h4>${{ item.total | number : "1.2-2" }}</h4>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="ibox-content">
+              <button (click)="emptyCart()" class="btn btn-danger">
+                Empty Cart
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="ibox">
+            <div class="ibox-title">
+              <h5>Cart Summary</h5>
+            </div>
+            <div class="ibox-content">
+              <span> Total </span>
+              <h2 class="font-bold">${{ grandTotal }}</h2>
+              <hr />
+              <span class="text-muted small">
+                *For United States, France and Germany applicable sales tax will
+                be applied
+              </span>
+              <div class="m-t-sm">
+                <div class="btn-group">
+                  <a href="#" class="btn btn-primary btn-sm"
+                    ><i class="fa fa-shopping-cart"></i> Checkout</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ibox">
+            <div class="ibox-title">
+              <h5>Support</h5>
+            </div>
+            <div class="ibox-content text-center">
+              <h3><i class="fa fa-phone"></i> +43 100 783 001</h3>
+              <span class="small">
+                Please contact with us if you have any questions. We are
+                avalible 24h.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="products.length == 0">
+  <div class="container">
+    <div class="card">
+      <h5 class="card-title">Shopping cart</h5>
+    </div>
+    <div class="center">
+      <img
+        src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
+        alt=""
+      />
+      <h4>Your cart is empty!</h4>
+      <h6>Add item to it now</h6>
+      <button routerLink="/home" class="btn btn-primary">Shop Now</button>
+    </div>
+  </div>
+</ng-container>

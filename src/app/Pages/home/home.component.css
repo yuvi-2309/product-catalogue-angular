@@ -1,0 +1,115 @@
+.product-image {
+  width: 15.625rem;
+  height: 15.625rem;
+  margin-top: 0.625rem;
+  margin-left: 1.5625rem;
+}
+
+h5,
+p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100ch;
+}
+
+.card {
+  margin: 1.25rem 3.375rem;
+  box-shadow: 0 0.125rem 0.125rem rgba(0, 0, 0, 0.2);
+}
+
+.link {
+  color: #0d6efd;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.link:hover {
+  color: #0000ff;
+}
+
+.sub-header {
+  display: flex;
+  align-items: center;
+  padding: 0.625rem;
+  background-color: #232f3e;
+  border-bottom: 0.0625rem solid #232f3e;
+  width: 100%;
+}
+
+.sub-header .item {
+  margin-right: 1rem;
+}
+
+.sub-header .item a {
+  text-decoration: none;
+  color: #ffffff;
+  position: relative;
+  cursor: pointer;
+}
+
+.sub-header .item a:hover {
+  color: #ffc0cb;
+}
+
+.sub-header .item a.active {
+  color: #fd617b;
+}
+
+.wishlist-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.wishlist-button {
+  border-radius: 5px;
+  color: #ffffff;
+  margin-bottom: 0.625rem;
+  width: 6.25rem;
+  height: 3.125rem;
+  font-size: 0.875rem;
+  background-color: #ff3e6c;
+  border: 0.0625rem solid #ff3e6c;
+}
+
+.wishlist-button:hover:not(:disabled) {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.product-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@media (max-width: 768px) {
+  .sub-header {
+    width: 100%;
+    padding: 0.625rem 0.625rem;
+  }
+
+  .sub-header .item {
+    margin-right: 0.625rem;
+  }
+
+  .product-image {
+    margin: 0.625rem;
+    height: 6.25rem;
+    width: 6.25rem;
+  }
+
+  .card {
+    width: 18.75rem;
+    margin: 0.625rem 2.5rem;
+    padding: 0;
+    align-items: center;
+  }
+
+  h5,
+  p {
+    white-space: normal;
+    font-size: 0.625rem;
+    margin-left: 0.125rem;
+  }
+}

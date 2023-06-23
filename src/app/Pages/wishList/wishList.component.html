@@ -1,0 +1,58 @@
+<app-header></app-header>
+<ng-container *ngIf="wishList.length !== 0">
+  <div class="container">
+    <div class="row">
+      <div class="title-container">
+        <h4 class="title">WishList</h4>
+        <button class="btn btn-white" (click)="navigateToPreviousRoute()">
+          <i class="fa fa-arrow-left"></i>
+          Go back
+        </button>
+      </div>
+      <div
+        class="card col-md-3"
+        *ngFor="
+          let item of wishList | filter : searchKey : 'title';
+          let index = index
+        "
+      >
+        <img src="{{ item.image }}" alt="" class="product-image" />
+        <h5 matTooltip="{{ item.title }}" matTooltipPosition="right">
+          {{ item.title }}
+        </h5>
+        <p matTooltip="{{ item.description }}" matTooltipPosition="right">
+          {{ item.description }}
+        </p>
+        <a (click)="navigateToProduct(item)" class="link">View more</a>
+        <p><strong>Price:</strong> ${{ item.price }}</p>
+        <div class="product-buttons">
+          <app-product-button
+            [added]="buttonStates[index]"
+            [product]="item"
+            (addToCartClicked)="addToCart($event)"
+          ></app-product-button>
+          <button (click)="removeFromWishlist(item)" class="button btn-danger">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="wishList.length == 0">
+  <div class="container">
+    <div class="card card-no-items">
+      <h5 class="card-title">WishList</h5>
+    </div>
+    <div class="center">
+      <img
+        src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
+        alt=""
+      />
+      <h4>Your wishlist is empty!</h4>
+      <h6>Add item to it now</h6>
+      <button routerLink="/home" class="btn btn-primary">Shop Now</button>
+    </div>
+  </div>
+</ng-container>
