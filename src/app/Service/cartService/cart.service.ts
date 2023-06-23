@@ -40,7 +40,7 @@ export class CartService {
   // This function calculates the total price of all items in a shopping cart.
   getTotalPrice(): number {
     let grandTotal = 0;
-    this.cartItemList.forEach((item: any) => {
+    this.cartItemList.forEach((item: Product) => {
       grandTotal += item.price * item.quantity;
     });
     grandTotal = Number(grandTotal.toFixed(2));
@@ -49,7 +49,7 @@ export class CartService {
 
   // This function removes a specific product from a cart item list
   removeCartItem(product: Product): void {
-    this.cartItemList.map((item: any, index: any) => {
+    this.cartItemList.map((item: Product, index: number) => {
       if (product.id === item.id) {
         this.cartItemList.splice(index, 1);
       }

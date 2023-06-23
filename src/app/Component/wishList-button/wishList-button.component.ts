@@ -26,7 +26,7 @@ export class WishListButtonComponent {
 
   
   // Function checks if an item is already in the wish list and returns a boolean value
-  isAddedToWishList(item: any): boolean {
+  isAddedToWishList(item: Product): boolean {
     return this.wishListService.isItemInWishList(item);
   }
 }

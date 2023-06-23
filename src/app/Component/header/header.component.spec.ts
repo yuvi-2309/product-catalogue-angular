@@ -40,7 +40,7 @@ describe('HeaderComponent', () => {
       fixture.nativeElement.querySelector('input');
     const searchTerm = 'example';
     inputElement.value = searchTerm;
-    const event = { target: inputElement } as any;
+    const event = { target: inputElement };
     spyOn(cartService.search, 'next');
 
     component.search(event);

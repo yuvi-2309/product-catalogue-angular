@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 import { AuthenticationService } from '../../Service/authentication/authentication.service';
 import { CartService } from 'src/app/Service/cartService/cart.service';

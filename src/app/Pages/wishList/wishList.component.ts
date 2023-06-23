@@ -15,9 +15,9 @@ import { DialogComponent } from 'src/app/Component/dialog/dialog.component';
   styleUrls: ['./wishList.component.css'],
 })
 export class WishListComponent {
-  wishList: any[] = [];
+  wishList: Product[] = [];
   buttonStates: boolean[] = [];
-  filterCategory: any = [];
+  filterCategory: Product[] = [];
   searchKey: string = '';
 
   constructor(
@@ -32,7 +32,7 @@ export class WishListComponent {
   // Function to get the wishlist from the wishlist service and get the search from the cart service
   ngOnInit(): void {
     this.wishList = this.wishListService.getWishList();
-    this.cartService.search.subscribe((value: any) => {
+    this.cartService.search.subscribe((value: string) => {
       this.searchKey = value;
     });
 

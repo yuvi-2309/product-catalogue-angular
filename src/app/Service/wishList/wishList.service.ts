@@ -31,7 +31,7 @@ export class WishListService {
   // This function checks if a given product is present in the wishlist or not.
   isItemInWishList(product: Product): boolean {
     return this.wishList.some(
-      (wishListItem: any) => wishListItem.id === product.id
+      (wishListItem: Product) => wishListItem.id === product.id
     );
   }
 }
