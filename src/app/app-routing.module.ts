@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CartComponent } from './Pages/cart/cart.component';
 import { LoginComponent } from './Pages/login/login.component';
 import { ProductComponent } from './Pages/product/product.component';
-import { WishListComponent, HomeComponent } from './Pages/main';
+import { WishlistComponent, HomeComponent } from './Pages/main';
 import { LoginGuard } from './Guard/loginGuard/login.guard';
 import { HomeGuard } from './Guard/homeGuard/home.guard';
 
@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   { path: 'cart', component: CartComponent },
   { path: 'product/:id', component: ProductComponent },
-  { path: 'wishlist', component: WishListComponent },
+  { path: 'wishlist', component: WishlistComponent },
   { path: '**', redirectTo: 'login' },
 ];
 

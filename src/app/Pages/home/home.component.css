@@ -86,7 +86,7 @@ p {
 .spinner {
   position: absolute;
   left: 45%;
-  top: 40%;
+  top: 50%;
 }
 
 @media (max-width: 768px) {

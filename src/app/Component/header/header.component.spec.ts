@@ -60,7 +60,7 @@ describe('HeaderComponent', () => {
   it('should navigate to wishlist when navigateToWishlist is called', fakeAsync(() => {
     spyOn(router, 'navigate');
 
-    component.navigateToWishList();
+    component.navigateToWishlist();
     tick();
 
     expect(router.navigate).toHaveBeenCalledWith(['/wishlist']);

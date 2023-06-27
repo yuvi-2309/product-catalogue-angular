@@ -7,7 +7,7 @@ import { ProductComponent } from './product.component';
 import {
   HeaderComponent,
   ProductButtonComponent,
-  WishListButtonComponent,
+  WishlistButtonComponent,
 } from 'src/app/Component/main';
 import { CartService } from 'src/app/Service/cartService/cart.service';
 
@@ -34,7 +34,7 @@ describe('ProductComponent', () => {
         ProductComponent,
         HeaderComponent,
         ProductButtonComponent,
-        WishListButtonComponent,
+        WishlistButtonComponent,
       ],
       imports: [MatMenuModule, FormsModule],
       providers: [CartService],

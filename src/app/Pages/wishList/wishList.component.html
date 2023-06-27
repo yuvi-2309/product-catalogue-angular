@@ -1,9 +1,9 @@
 <app-header></app-header>
-<ng-container *ngIf="wishList.length !== 0">
+<ng-container *ngIf="wishlist.length !== 0">
   <div class="container">
     <div class="row">
       <div class="title-container">
-        <h4 class="title">WishList</h4>
+        <h4 class="title">wishlist</h4>
         <button class="btn btn-white" (click)="navigateToPreviousRoute()">
           <i class="fa fa-arrow-left"></i>
           Go back
@@ -12,7 +12,7 @@
       <div
         class="card col-md-3"
         *ngFor="
-          let item of wishList | filter : searchKey : 'title';
+          let item of wishlist | filter : searchKey : 'title';
           let index = index
         "
       >
@@ -40,10 +40,10 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="wishList.length == 0">
+<ng-container *ngIf="wishlist.length == 0">
   <div class="container">
     <div class="card card-no-items">
-      <h5 class="card-title">WishList</h5>
+      <h5 class="card-title">wishlist</h5>
     </div>
     <div class="center">
       <img

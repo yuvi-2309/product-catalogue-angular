@@ -5,13 +5,13 @@ import {
   tick,
 } from '@angular/core/testing';
 
-import { WishListButtonComponent } from './wishList-button.component';
-import { WishListService } from '../../Service/wishList/wishList.service';
+import { WishlistButtonComponent } from './wishlist-button.component';
+import { WishlistService } from '../../Service/wishlist/wishlist.service';
 
 describe('WishlistButtonComponent', () => {
-  let component: WishListButtonComponent;
-  let fixture: ComponentFixture<WishListButtonComponent>;
-  let wishListService: WishListService;
+  let component: WishlistButtonComponent;
+  let fixture: ComponentFixture<WishlistButtonComponent>;
+  let wishlistService: WishlistService;
   const product = {
     id: 1,
     title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
@@ -27,12 +27,12 @@ describe('WishlistButtonComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [WishListButtonComponent],
-      providers: [WishListService],
+      declarations: [WishlistButtonComponent],
+      providers: [WishlistService],
     });
-    fixture = TestBed.createComponent(WishListButtonComponent);
+    fixture = TestBed.createComponent(WishlistButtonComponent);
     component = fixture.componentInstance;
-    wishListService = TestBed.inject(WishListService);
+    wishlistService = TestBed.inject(WishlistService);
     fixture.detectChanges();
   });
 
@@ -40,16 +40,16 @@ describe('WishlistButtonComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call addToWishList method of wishListService', () => {
-    spyOn(wishListService, 'addToWishList');
+  it('should call addTowishlist method of wishlistService', () => {
+    spyOn(wishlistService, 'addToWishlist');
 
-    component.addToWishList(product);
+    component.addToWishlist(product);
 
-    expect(wishListService.addToWishList).toHaveBeenCalledWith(product);
+    expect(wishlistService.addToWishlist).toHaveBeenCalledWith(product);
   });
 
   it('should set isLoading to true and then false after 1 second', fakeAsync(() => {
-    component.addToWishList(product);
+    component.addToWishlist(product);
     expect(component.isLoading).toBe(true);
 
     tick(1000);

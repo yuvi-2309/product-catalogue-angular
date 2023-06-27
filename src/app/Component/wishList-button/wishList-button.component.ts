@@ -1,22 +1,22 @@
 import { Component, Input } from '@angular/core';
 
 import { Product } from 'src/app/Interfaces/interface';
-import { WishListService } from 'src/app/Service/wishList/wishList.service';
+import { WishlistService } from 'src/app/Service/wishlist/wishlist.service';
 
 @Component({
-  selector: 'app-wishList-button',
-  templateUrl: './wishList-button.component.html',
-  styleUrls: ['./wishList-button.component.css'],
+  selector: 'app-wishlist-button',
+  templateUrl: './wishlist-button.component.html',
+  styleUrls: ['./wishlist-button.component.css'],
 })
-export class WishListButtonComponent {
+export class WishlistButtonComponent {
   @Input() product: Product;
   isLoading: boolean = false;
 
-  constructor(private wishListService: WishListService) {}
+  constructor(private wishlistService: WishlistService) {}
 
   // Function to add a product to the wishlist
-  addToWishList(item: Product): void {
-    this.wishListService.addToWishList(item);
+  addToWishlist(item: Product): void {
+    this.wishlistService.addToWishlist(item);
     this.isLoading = true;
 
     setTimeout(() => {
@@ -24,9 +24,8 @@ export class WishListButtonComponent {
     }, 1000);
   }
 
-  
   // Function checks if an item is already in the wish list and returns a boolean value
-  isAddedToWishList(item: Product): boolean {
-    return this.wishListService.isItemInWishList(item);
+  isAddedToWishlist(item: Product): boolean {
+    return this.wishlistService.isItemInWishlist(item);
   }
 }

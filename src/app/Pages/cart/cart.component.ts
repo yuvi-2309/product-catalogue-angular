@@ -49,7 +49,7 @@ export class CartComponent {
   }
 
   // This function opens a dialog box to confirm the removal of all products from the cart and removes it if confirmed.
-  emptyCart() {
+  emptyCart(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '300px',
       data: {
@@ -67,14 +67,14 @@ export class CartComponent {
   }
 
   // Function to show the toast message
-  showDeleteToast() {
+  showDeleteToast(): void {
     this.toastr.success('Item deleted successfully!', 'Delete', {
       closeButton: true,
     });
   }
 
   // Function to decrease a quantity of a product if it is greater than 1 or remove the product based on a confirmation popup
-  decreaseQuantity(product: Product) {
+  decreaseQuantity(product: Product): void {
     if (product.quantity > 1) {
       product.quantity--;
       product.total = product.price * product.quantity;
@@ -85,14 +85,14 @@ export class CartComponent {
   }
 
   // Function to increase a quantity of a product and get the grandTotal 
-  increaseQuantity(product: Product) {
+  increaseQuantity(product: Product): void {
     product.quantity++;
     product.total = product.price * product.quantity;
     this.grandTotal = this.cartService.getTotalPrice();
   }
 
   // Function to navigate to the product page
-  navigateToProduct(product: Product) {
+  navigateToProduct(product: Product): void {
     this.sharedService.navigateToProduct(product);
   }
 

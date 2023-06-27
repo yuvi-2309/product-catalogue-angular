@@ -2,19 +2,28 @@
 
 This repository contains the source code for a product catalogue application. The application is built using Angular framework.
 
+# Steps to start the application
+
+- Install the node modules using "npm install"
+- Install the necessary dependencies
+- Open two terminals
+- In first terminal, go to "product-catalogue\local-db" directory and run the server using "npm run start-auth" command
+- In second terminal, go to "product-catalogue" directory and run the application using "ng serve"
+- Run the application in localhost:4200 in the web.
+
 ## Components
 - dialog
 - header
 - no-product-found
 - product-button
-- wishList-button
+- wishlist-button
 
 ## Templates
 - cart
 - home
 - login
 - product
-- wishList
+- wishlist
 
 ## Pipes
 - FilterPipe
@@ -23,7 +32,7 @@ This repository contains the source code for a product catalogue application. Th
 - authentication
 - cartService
 - shared
-- wishList
+- wishlist
 
 ## Guards
 - homeGuard
@@ -58,4 +67,3 @@ This repository contains the source code for a product catalogue application. Th
 - **karma-jasmine** (~5.1.0): A plugin for integrating the Jasmine testing framework with Karma.
 - **karma-jasmine-html-reporter** (~2.0.0): A plugin for generating HTML reports for Jasmine tests in Karma.
 - **typescript** (~5.0.2): A superset of JavaScript that adds optional static typing to the language.
-

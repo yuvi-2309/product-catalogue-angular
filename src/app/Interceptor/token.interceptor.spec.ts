@@ -51,7 +51,6 @@ describe('TokenInterceptor', () => {
         return EMPTY;
       },
     };
-
     interceptor.intercept(request, next);
   });
 });

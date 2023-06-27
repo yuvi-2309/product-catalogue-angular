@@ -18,14 +18,14 @@ import {
   LoginComponent,
   ProductComponent,
   HomeComponent,
-  WishListComponent,
+  WishlistComponent,
 } from './Pages/main';
 import {
   HeaderComponent,
   DialogComponent,
   NoProductFoundComponent,
   ProductButtonComponent,
-  WishListButtonComponent,
+  WishlistButtonComponent,
 } from './Component/main';
 import { FilterPipe } from './Pipes/main';
 
@@ -40,9 +40,9 @@ import { FilterPipe } from './Pipes/main';
     FilterPipe,
     NoProductFoundComponent,
     ProductButtonComponent,
-    WishListButtonComponent,
+    WishlistButtonComponent,
     HomeComponent,
-    WishListComponent,
+    WishlistComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
-import { WishListService } from './wishList.service';
+import { WishlistService } from './wishlist.service';
 
-describe('WishListService', () => {
-  let service: WishListService;
+describe('wishlistService', () => {
+  let service: WishlistService;
   const mockProduct1 = {
     id: 1,
     title: 'Fjallraven',
@@ -29,38 +29,38 @@ describe('WishListService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(WishListService);
+    service = TestBed.inject(WishlistService);
   });
 
   it('should add a product to the wishlist', () => {
-    service.addToWishList(mockProduct1);
-    expect(service.getWishList()).toContain(mockProduct1);
+    service.addToWishlist(mockProduct1);
+    expect(service.getWishlist()).toContain(mockProduct1);
   });
 
   it('should not add a product to the wishlist if it already exists', () => {
-    service.addToWishList(mockProduct1);
-    const initialWishlist = service.getWishList();
-    service.addToWishList(mockProduct1);
-    expect(service.getWishList()).toEqual(initialWishlist);
+    service.addToWishlist(mockProduct1);
+    const initialWishlist = service.getWishlist();
+    service.addToWishlist(mockProduct1);
+    expect(service.getWishlist()).toEqual(initialWishlist);
   });
 
   it('should remove a product from the wishlist', () => {
-    service.addToWishList(mockProduct1);
-    service.addToWishList(mockProduct2);
+    service.addToWishlist(mockProduct1);
+    service.addToWishlist(mockProduct2);
 
-    service.removeFromWishList(mockProduct1);
+    service.removeFromWishlist(mockProduct1);
 
-    expect(service.getWishList()).not.toContain(mockProduct1);
-    expect(service.getWishList()).toContain(mockProduct2);
+    expect(service.getWishlist()).not.toContain(mockProduct1);
+    expect(service.getWishlist()).toContain(mockProduct2);
   });
 
   it('should return true if a product is in the wishlist', () => {
-    service.addToWishList(mockProduct1);
-    expect(service.isItemInWishList(mockProduct1)).toBe(true);
+    service.addToWishlist(mockProduct1);
+    expect(service.isItemInWishlist(mockProduct1)).toBe(true);
   });
 
   it('should return false if a product is not in the wishlist', () => {
-    service.addToWishList(mockProduct1);
-    expect(service.isItemInWishList(mockProduct2)).toBe(false);
+    service.addToWishlist(mockProduct1);
+    expect(service.isItemInWishlist(mockProduct2)).toBe(false);
   });
 });

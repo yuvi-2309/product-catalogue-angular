@@ -4,24 +4,24 @@ import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 
 import { CartService } from 'src/app/Service/cartService/cart.service';
-import { WishListService } from 'src/app/Service/wishList/wishList.service';
+import { WishlistService } from 'src/app/Service/wishlist/wishlist.service';
 import { SharedService } from 'src/app/Service/shared/shared.service';
 import { Product } from 'src/app/Interfaces/interface';
 import { DialogComponent } from 'src/app/Component/dialog/dialog.component';
 
 @Component({
   selector: 'app-wishlist',
-  templateUrl: './wishList.component.html',
-  styleUrls: ['./wishList.component.css'],
+  templateUrl: './wishlist.component.html',
+  styleUrls: ['./wishlist.component.css'],
 })
-export class WishListComponent {
-  wishList: Product[] = [];
+export class WishlistComponent {
+  wishlist: Product[] = [];
   buttonStates: boolean[] = [];
   filterCategory: Product[] = [];
   searchKey: string = '';
 
   constructor(
-    private wishListService: WishListService,
+    private wishlistService: WishlistService,
     private sharedService: SharedService,
     private cartService: CartService,
     private location: Location,
@@ -31,7 +31,7 @@ export class WishListComponent {
 
   // Function to get the wishlist from the wishlist service and get the search from the cart service
   ngOnInit(): void {
-    this.wishList = this.wishListService.getWishList();
+    this.wishlist = this.wishlistService.getWishlist();
     this.cartService.search.subscribe((value: string) => {
       this.searchKey = value;
     });
@@ -51,7 +51,7 @@ export class WishListComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.wishListService.removeFromWishList(product);
+        this.wishlistService.removeFromWishlist(product);
         this.showDeleteToast();
       }
     });

@@ -26,7 +26,7 @@ export class HeaderComponent {
   }
 
   // Function to set the search text to the service if the letters has more than or equal to 3 letters
-  search(event: any) {
+  search(event: any): void {
     this.searchTerm = (event.target as HTMLInputElement).value;
     if (this.searchTerm.length >= 3)
       this.cartService.search.next(this.searchTerm);
@@ -34,12 +34,12 @@ export class HeaderComponent {
   }
 
   // Function to navigate to wishlist component
-  navigateToWishList(): void {
+  navigateToWishlist(): void {
     this.router.navigate(['/wishlist']);
   }
 
   // Function to sign out of products page and redirect to login
-  signOut() {
+  signOut(): void {
     this.router.navigate(['/login']);
     localStorage.removeItem('token');
   }

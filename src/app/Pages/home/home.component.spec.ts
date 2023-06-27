@@ -11,7 +11,7 @@ import {
   HeaderComponent,
   NoProductFoundComponent,
   ProductButtonComponent,
-  WishListButtonComponent,
+  WishlistButtonComponent,
 } from 'src/app/Component/main';
 import { FilterPipe } from 'src/app/Pipes/main';
 import { CartService } from 'src/app/Service/cartService/cart.service';
@@ -88,7 +88,7 @@ describe('HomeComponent', () => {
       declarations: [
         HomeComponent,
         HeaderComponent,
-        WishListButtonComponent,
+        WishlistButtonComponent,
         NoProductFoundComponent,
         ProductButtonComponent,
         FilterPipe,

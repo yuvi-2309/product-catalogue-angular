@@ -6,8 +6,8 @@ import { Location } from '@angular/common';
 import { of } from 'rxjs';
 
 import { HeaderComponent } from 'src/app/Component/main';
-import { WishListComponent } from './wishList.component';
-import { WishListService } from 'src/app/Service/wishList/wishList.service';
+import { WishlistComponent } from './wishlist.component';
+import { WishlistService } from 'src/app/Service/wishlist/wishlist.service';
 import { SharedService } from 'src/app/Service/shared/shared.service';
 import { CartService } from 'src/app/Service/cartService/cart.service';
 
@@ -17,10 +17,10 @@ class MatDialogRefMock {
   }
 }
 
-describe('WishListComponent', () => {
-  let component: WishListComponent;
-  let fixture: ComponentFixture<WishListComponent>;
-  let wishListService: WishListService;
+describe('wishlistComponent', () => {
+  let component: WishlistComponent;
+  let fixture: ComponentFixture<WishlistComponent>;
+  let wishlistService: WishlistService;
   let sharedService: SharedService;
   let cartService: CartService;
   let location: Location;
@@ -39,7 +39,7 @@ describe('WishListComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [WishListComponent, HeaderComponent],
+      declarations: [WishlistComponent, HeaderComponent],
       imports: [
         MatDialogModule,
         ToastrModule.forRoot({
@@ -50,7 +50,7 @@ describe('WishListComponent', () => {
         MatMenuModule,
       ],
       providers: [
-        WishListService,
+        WishlistService,
         SharedService,
         CartService,
         ToastrService,
@@ -58,9 +58,9 @@ describe('WishListComponent', () => {
         { provide: MatDialogRef, useClass: MatDialogRefMock },
       ],
     });
-    fixture = TestBed.createComponent(WishListComponent);
+    fixture = TestBed.createComponent(WishlistComponent);
     component = fixture.componentInstance;
-    wishListService = TestBed.inject(WishListService);
+    wishlistService = TestBed.inject(WishlistService);
     sharedService = TestBed.inject(SharedService);
     cartService = TestBed.inject(CartService);
     location = TestBed.inject(Location);
@@ -76,12 +76,12 @@ describe('WishListComponent', () => {
       TestBed.inject(MatDialogRef)
     );
     spyOn(component, 'showDeleteToast');
-    spyOn(wishListService, 'removeFromWishList');
+    spyOn(wishlistService, 'removeFromWishlist');
 
     component.removeFromWishlist(product);
 
     expect(component.dialog.open).toHaveBeenCalled();
-    expect(wishListService.removeFromWishList).toHaveBeenCalledWith(product);
+    expect(wishlistService.removeFromWishlist).toHaveBeenCalledWith(product);
     expect(component.showDeleteToast).toHaveBeenCalled();
   });
 
