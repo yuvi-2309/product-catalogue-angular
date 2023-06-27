@@ -34,6 +34,7 @@ export class CartComponent {
   // This function opens a dialog box to confirm the removal of a product from the cart and removes it if confirmed.
   removeItem(product: Product): void {
     const dialogRef = this.dialog.open(DialogComponent, {
+      autoFocus: false,
       width: '300px',
       data: {
         message: 'Are you sure you want to remove this item from your cart?',
@@ -51,6 +52,7 @@ export class CartComponent {
   // This function opens a dialog box to confirm the removal of all products from the cart and removes it if confirmed.
   emptyCart(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
+      autoFocus: false,
       width: '300px',
       data: {
         message:

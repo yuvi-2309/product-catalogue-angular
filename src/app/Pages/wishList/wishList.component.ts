@@ -42,6 +42,7 @@ export class WishlistComponent {
   //  This function opens a dialog box to confirm the removal of a product from the user's wishlist and removes it if confirmed.
   removeFromWishlist(product: Product): void {
     const dialogRef = this.dialog.open(DialogComponent, {
+      autoFocus: false,
       width: '300px',
       data: {
         message:
