@@ -90,23 +90,23 @@ table.shoping-cart-table tr td:last-child {
   width: 80px;
 }
 
-.ibox {
+.box {
   clear: both;
   margin-top: 0;
   padding: 0;
   height: max-content;
 }
 
-.ibox.collapsed .ibox-content {
+.box.collapsed .box-content {
   display: none;
 }
 
-.ibox:after,
-.ibox:before {
+.box:after,
+.box:before {
   display: table;
 }
 
-.ibox-title {
+.box-title {
   display: flex;
   justify-content: space-between;
   border-color: #e7eaec;
@@ -115,14 +115,14 @@ table.shoping-cart-table tr td:last-child {
   min-height: 48px;
 }
 
-.ibox-content {
+.box-content {
   padding: 15px 20px 20px 20px;
   border-color: #e7eaec;
   border-style: solid solid none;
   border-width: 1px 0;
 }
 
-.ibox-footer {
+.box-footer {
   border-top: 1px solid #e7eaec;
   font-size: 90%;
   padding: 10px 15px;
@@ -196,4 +196,3 @@ tr.table-row:not(:first-child) {
     margin-right:15px ;
   }
 }
-
