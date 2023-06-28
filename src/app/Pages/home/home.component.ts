@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
-import { AuthenticationService } from '../../Service/authentication/authentication.service';
+import { Product } from 'src/app/Interfaces/interface';
 import { CartService } from 'src/app/Service/cartService/cart.service';
 import { SharedService } from 'src/app/Service/shared/shared.service';
-import { Product } from 'src/app/Interfaces/interface';
+import { AuthenticationService } from '../../Service/authentication/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -16,35 +17,48 @@ export class HomeComponent implements OnInit {
   searchKey: string = '';
   productButtonStates: boolean[] = [];
   selectedFilter: string = '';
-  showSpinner: boolean = true
+  showSpinner: boolean = true;
+  timeout: any;
+  filters: string[] = [
+    'All products',
+    'Men',
+    'Women',
+    'Electronics',
+    'Jewelery',
+  ];
+  private productSubscription: Subscription;
+  private cartSubscription: Subscription;
 
   constructor(
     private products: AuthenticationService,
     private cartService: CartService,
-    private sharedService: SharedService,
+    private sharedService: SharedService
   ) {}
 
   // Function to get the products from the authentication Service and to get the search key from the cart service
   ngOnInit(): void {
-
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.showSpinner = false;
     }, 1500);
 
-    this.products.getProduct().subscribe((response) => {
-      this.filterCategory = response;
-      this.productList = response;
-      this.shuffleItems();
+    this.productSubscription = this.products
+      .getProduct()
+      .subscribe((response) => {
+        this.filterCategory = response;
+        this.productList = response;
+        this.shuffleItems();
 
-      this.productList.forEach((product: Product) => {
-        product.quantity = 1;
-        product.total = product.price;
+        this.productList.forEach((product: Product) => {
+          product.quantity = 1;
+          product.total = product.price;
+        });
       });
-    });
 
-    this.cartService.search.subscribe((value: string) => {
-      this.searchKey = value;
-    });
+    this.cartSubscription = this.cartService.search.subscribe(
+      (value: string) => {
+        this.searchKey = value;
+      }
+    );
   }
 
   // Function to add a product to cart
@@ -77,5 +91,11 @@ export class HomeComponent implements OnInit {
         return product;
       }
     });
+  }
+
+  ngOnDestroy() {
+    if (this.productSubscription) this.productSubscription.unsubscribe();
+    if (this.cartSubscription) this.cartSubscription.unsubscribe();
+    if (this.timeout) clearTimeout(this.timeout);
   }
 }

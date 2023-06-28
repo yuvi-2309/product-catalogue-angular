@@ -1,33 +1,33 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatButtonModule } from '@angular/material/button';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { TokenInterceptor } from './Interceptor/token.interceptor';
 import {
-  CartComponent,
-  LoginComponent,
-  ProductComponent,
-  HomeComponent,
-  WishlistComponent,
-} from './Pages/main';
-import {
-  HeaderComponent,
   DialogComponent,
+  HeaderComponent,
   NoProductFoundComponent,
   ProductButtonComponent,
   WishlistButtonComponent,
 } from './Component/main';
+import { TokenInterceptor } from './Interceptor/token.interceptor';
+import {
+  CartComponent,
+  HomeComponent,
+  LoginComponent,
+  ProductComponent,
+  WishlistComponent,
+} from './Pages/main';
 import { FilterPipe } from './Pipes/main';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [

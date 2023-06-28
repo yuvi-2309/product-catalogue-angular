@@ -12,3 +12,10 @@ export interface Product {
     count: number;
   };
 }
+
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+}

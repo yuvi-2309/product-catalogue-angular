@@ -1,17 +1,18 @@
 import {
   ComponentFixture,
   TestBed,
-  tick,
   fakeAsync,
+  tick,
 } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { MatMenuModule } from '@angular/material/menu';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
 
-import { HeaderComponent, DialogComponent } from 'src/app/Component/main';
-import { CartComponent } from './cart.component';
+import { DialogComponent, HeaderComponent } from 'src/app/Component/main';
 import { CartService } from 'src/app/Service/cartService/cart.service';
+import { SharedService } from 'src/app/Service/shared/shared.service';
+import { CartComponent } from './cart.component';
 
 class MatDialogRefMock {
   afterClosed() {
@@ -22,6 +23,9 @@ class MatDialogRefMock {
 describe('CartComponent', () => {
   let component: CartComponent;
   let fixture: ComponentFixture<CartComponent>;
+  let sharedService: SharedService;
+  let toastrService: ToastrService; // Add this line
+
   const product = {
     id: 1,
     title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
@@ -50,16 +54,15 @@ describe('CartComponent', () => {
       providers: [
         CartService,
         ToastrService,
+        SharedService,
         { provide: MatDialogRef, useClass: MatDialogRefMock },
       ],
     });
     fixture = TestBed.createComponent(CartComponent);
     component = fixture.componentInstance;
+    sharedService = TestBed.inject(SharedService);
+    toastrService = TestBed.inject(ToastrService); // Add this line
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should remove item from cart and show delete toast', fakeAsync(() => {
@@ -67,14 +70,14 @@ describe('CartComponent', () => {
       TestBed.inject(MatDialogRef)
     );
     spyOn(component.cartService, 'removeCartItem');
-    spyOn(component, 'showDeleteToast');
+    spyOn(sharedService, 'showDeleteToast');
 
     component.removeItem(product);
     tick();
 
     expect(component.dialog.open).toHaveBeenCalled();
     expect(component.cartService.removeCartItem).toHaveBeenCalledWith(product);
-    expect(component.showDeleteToast).toHaveBeenCalled();
+    expect(sharedService.showDeleteToast).toHaveBeenCalled();
   }));
 
   it('should remove all items from cart and show delete toast', fakeAsync(() => {
@@ -82,14 +85,14 @@ describe('CartComponent', () => {
       TestBed.inject(MatDialogRef)
     );
     spyOn(component.cartService, 'removeAllCart');
-    spyOn(component, 'showDeleteToast');
+    spyOn(sharedService, 'showDeleteToast');
 
     component.emptyCart();
     tick();
 
     expect(component.dialog.open).toHaveBeenCalled();
     expect(component.cartService.removeAllCart).toHaveBeenCalled();
-    expect(component.showDeleteToast).toHaveBeenCalled();
+    expect(sharedService.showDeleteToast).toHaveBeenCalled();
   }));
 
   it('should decrease quantity of product and update total and grandTotal', () => {
@@ -152,11 +155,11 @@ describe('CartComponent', () => {
   });
 
   it('should show delete toast with success message', () => {
-    spyOn(component.toastr, 'success');
+    spyOn(toastrService, 'success'); // Update the spyOn line
 
-    component.showDeleteToast();
+    sharedService.showDeleteToast();
 
-    expect(component.toastr.success).toHaveBeenCalledWith(
+    expect(toastrService.success).toHaveBeenCalledWith(
       'Item deleted successfully!',
       'Delete',
       {

@@ -46,7 +46,7 @@ server.post("/auth/login", (req, res) => {
     return;
   }
   const access_token = createToken({ email, password });
-  res.status(200).json({ access_token });
+  res.status(200).json({ access_token, email });
 });
 
 server.use(/^(?!\/auth).*$/, (req, res, next) => {
@@ -72,5 +72,5 @@ server.use(/^(?!\/auth).*$/, (req, res, next) => {
 server.use(router);
 
 server.listen(8000, () => {
-  console.log('Run Auth API Server')
-})
+  console.log("Run Auth API Server");
+});

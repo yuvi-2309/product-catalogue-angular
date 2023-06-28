@@ -13,19 +13,18 @@
   justify-content: flex-end;
 }
 
-.ok-popup-button {
+.popup-button {
   padding: 0.625rem;
   margin-left: 0.625rem;
-  color: #ff0404;
-  border: 1px solid #ff0000;
   border-radius: 0.3125rem;
   background: none;
 }
 
-.cancel-popup-button {
+.popup-button.ok {
+  color: #ff0404;
+  border: 1px solid #ff0000;
+}
+
+.popup-button.cancel {
   border: none;
-  padding: 0.625rem;
-  margin-left: 0.625rem;
-  border-radius: 0.3125rem;
-  background: none;
 }

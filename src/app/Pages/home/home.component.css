@@ -3,6 +3,12 @@
   height: 15.625rem;
   margin-top: 0.625rem;
   margin-left: 1.5625rem;
+
+  @media (max-width: 1200px) {
+    margin: 2rem;
+    height: 8.25rem;
+    width: 8.25rem;
+  }
 }
 
 h5,

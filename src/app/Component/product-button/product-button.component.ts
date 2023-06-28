@@ -13,18 +13,23 @@ export class ProductButtonComponent {
   @Output() addToCartClicked = new EventEmitter<any>();
 
   isLoading: boolean = false;
+  timeout: any;
 
   // The function sets a loading state, emits an event with a product, and then sets a success state after a delay.
   onAddToCartClicked() {
     this.isLoading = true;
     this.addToCartClicked.emit(this.product);
 
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.isLoading = false;
       this.added = true;
       setTimeout(() => {
         this.added = false;
       }, 1000);
     }, 1000);
+  }
+
+  ngOnDestroy() {
+    if (this.timeout) clearTimeout(this.timeout);
   }
 }

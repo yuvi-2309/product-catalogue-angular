@@ -1,23 +1,29 @@
-import { ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
-import { MatMenuModule } from '@angular/material/menu';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { of } from 'rxjs';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  tick,
+} from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { of } from 'rxjs';
 
-import { HomeComponent } from './home.component';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import {
   HeaderComponent,
   NoProductFoundComponent,
   ProductButtonComponent,
   WishlistButtonComponent,
 } from 'src/app/Component/main';
+import { Product } from 'src/app/Interfaces/interface';
 import { FilterPipe } from 'src/app/Pipes/main';
+import { AuthenticationService } from 'src/app/Service/authentication/authentication.service';
 import { CartService } from 'src/app/Service/cartService/cart.service';
 import { SharedService } from 'src/app/Service/shared/shared.service';
-import { Product } from 'src/app/Interfaces/interface';
-import { AuthenticationService } from 'src/app/Service/authentication/authentication.service';
+import { HomeComponent } from './home.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -25,6 +31,7 @@ describe('HomeComponent', () => {
   let cartService: CartService;
   let sharedService: SharedService;
   let authenticationService: AuthenticationService;
+  let toastrService: ToastrService;
   const products: Product[] = [
     {
       id: 1,
@@ -93,8 +100,15 @@ describe('HomeComponent', () => {
         ProductButtonComponent,
         FilterPipe,
       ],
-      imports: [MatMenuModule, FormsModule, HttpClientModule, MatTooltipModule, MatProgressSpinnerModule],
-      providers: [CartService, SharedService],
+      imports: [
+        MatMenuModule,
+        FormsModule,
+        HttpClientModule,
+        MatTooltipModule,
+        MatProgressSpinnerModule,
+        ToastrModule.forRoot(),
+      ],
+      providers: [CartService, SharedService, ToastrService],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HomeComponent);
@@ -115,12 +129,12 @@ describe('HomeComponent', () => {
   });
 
   it('should hide the spinner after 1.5 seconds', fakeAsync(() => {
-    expect(component.showSpinner).toBe(true); 
+    expect(component.showSpinner).toBe(true);
     component.ngOnInit();
     tick(2000);
-    
+
     fixture.detectChanges();
-    expect(component.showSpinner).toBe(false); 
+    expect(component.showSpinner).toBe(false);
   }));
 
   it('should fetch products and set initial values', () => {

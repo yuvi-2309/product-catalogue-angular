@@ -28,11 +28,11 @@
       matTooltip="wishlist"
       matTooltipPosition="below"
     >
-      wishlist
+      Wishlist
     </div>
     <div>
       <button mat-button [matMenuTriggerFor]="menu" class="user">
-        Yuvaraj
+        {{ user }}
       </button>
       <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="signOut()">Sign out</button>

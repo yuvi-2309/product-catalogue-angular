@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
+import { DialogComponent } from 'src/app/Component/dialog/dialog.component';
 import { Product } from 'src/app/Interfaces/interface';
 import { CartService } from 'src/app/Service/cartService/cart.service';
 import { SharedService } from 'src/app/Service/shared/shared.service';
-import { DialogComponent } from 'src/app/Component/dialog/dialog.component';
 
 @Component({
   selector: 'app-cart',
@@ -15,6 +16,8 @@ import { DialogComponent } from 'src/app/Component/dialog/dialog.component';
 export class CartComponent {
   products: Product[] = [];
   grandTotal!: number;
+  private subscription: Subscription;
+
   constructor(
     public cartService: CartService,
     public sharedService: SharedService,
@@ -24,7 +27,7 @@ export class CartComponent {
 
   // Function to get the products and grandTotal from the cart Service
   ngOnInit(): void {
-    this.cartService.getProducts().subscribe((res) => {
+    this.subscription = this.cartService.getProducts().subscribe((res) => {
       this.products = res;
       this.grandTotal = this.cartService.getTotalPrice();
     });
@@ -44,7 +47,7 @@ export class CartComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.cartService.removeCartItem(product);
-        this.showDeleteToast();
+        this.sharedService.showDeleteToast();
       }
     });
   }
@@ -63,15 +66,8 @@ export class CartComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.cartService.removeAllCart();
-        this.showDeleteToast();
+        this.sharedService.showDeleteToast();
       }
-    });
-  }
-
-  // Function to show the toast message
-  showDeleteToast(): void {
-    this.toastr.success('Item deleted successfully!', 'Delete', {
-      closeButton: true,
     });
   }
 
@@ -86,7 +82,7 @@ export class CartComponent {
     }
   }
 
-  // Function to increase a quantity of a product and get the grandTotal 
+  // Function to increase a quantity of a product and get the grandTotal
   increaseQuantity(product: Product): void {
     product.quantity++;
     product.total = product.price * product.quantity;
@@ -101,5 +97,6 @@ export class CartComponent {
   // Function to reset the inputVisible to true once the component gets destroyed
   ngOnDestroy() {
     this.sharedService.isInputVisible = true;
+    if (this.subscription) this.subscription.unsubscribe();
   }
 }

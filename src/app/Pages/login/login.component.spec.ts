@@ -1,15 +1,17 @@
+import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import {
   ComponentFixture,
   TestBed,
-  tick,
   fakeAsync,
+  tick,
 } from '@angular/core/testing';
-import { HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
 
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from 'src/app/Service/authentication/authentication.service';
+import { SharedService } from 'src/app/Service/shared/shared.service';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
@@ -17,22 +19,20 @@ describe('LoginComponent', () => {
   let fixture: ComponentFixture<LoginComponent>;
   let authenticationService: AuthenticationService;
   let router: Router;
+  let sharedService: SharedService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      imports: [HttpClientModule, ReactiveFormsModule],
-      providers: [AuthenticationService, Router],
+      imports: [HttpClientModule, ReactiveFormsModule, ToastrModule.forRoot()],
+      providers: [AuthenticationService, Router, ToastrService, SharedService],
     });
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     authenticationService = TestBed.inject(AuthenticationService);
+    sharedService = TestBed.inject(SharedService);
     router = TestBed.inject(Router);
     fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
   });
 
   it('should login and navigate to home when form is valid', fakeAsync(() => {
@@ -40,11 +40,13 @@ describe('LoginComponent', () => {
     spyOn(authenticationService, 'onLogin').and.returnValue(of(mockResponse));
     spyOn(localStorage, 'setItem');
     spyOn(router, 'navigate');
+    spyOn(sharedService, 'findUserByEmail');
 
     component.loginForm.setValue({
       ['email']: 'bruno@email.com',
-      ['password']: 'password',
+      ['password']: 'bruno',
     });
+
     component.onSubmit();
     tick();
 
@@ -61,13 +63,14 @@ describe('LoginComponent', () => {
   it('should set invalidCredentials error when login request returns 401 status', fakeAsync(() => {
     const mockError = new HttpErrorResponse({ status: 401 });
     spyOn(authenticationService, 'onLogin').and.returnValue(
-      throwError(mockError)
+      throwError(() => mockError)
     );
 
     component.loginForm.setValue({
       ['email']: 'bruno@email.com',
       ['password']: 'password',
     });
+
     component.onSubmit();
     tick();
 

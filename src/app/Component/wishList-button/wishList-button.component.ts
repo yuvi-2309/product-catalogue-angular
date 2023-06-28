@@ -11,6 +11,7 @@ import { WishlistService } from 'src/app/Service/wishlist/wishlist.service';
 export class WishlistButtonComponent {
   @Input() product: Product;
   isLoading: boolean = false;
+  timeout: any;
 
   constructor(private wishlistService: WishlistService) {}
 
@@ -19,7 +20,7 @@ export class WishlistButtonComponent {
     this.wishlistService.addToWishlist(item);
     this.isLoading = true;
 
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       this.isLoading = false;
     }, 1000);
   }
@@ -27,5 +28,9 @@ export class WishlistButtonComponent {
   // Function checks if an item is already in the wish list and returns a boolean value
   isAddedToWishlist(item: Product): boolean {
     return this.wishlistService.isItemInWishlist(item);
+  }
+
+  ngOnDestroy() {
+    if (this.timeout) clearTimeout(this.timeout);
   }
 }

@@ -1,40 +1,11 @@
 <app-header></app-header>
 <div class="sub-header">
-  <div class="item">
-    <a [class.active]="selectedFilter === ''" (click)="filterProducts('')">
-      All products
-    </a>
-  </div>
-  <div class="item">
+  <div class="item" *ngFor="let filter of filters">
     <a
-      [class.active]="selectedFilter === 'men\'s clothing'"
-      (click)="filterProducts('men\'s clothing')"
+      [class.active]="selectedFilter === filter"
+      (click)="filterProducts(filter)"
     >
-      Men
-    </a>
-  </div>
-  <div class="item">
-    <a
-      [class.active]="selectedFilter === 'women\'s clothing'"
-      (click)="filterProducts('women\'s clothing')"
-    >
-      Women
-    </a>
-  </div>
-  <div class="item">
-    <a
-      [class.active]="selectedFilter === 'electronics'"
-      (click)="filterProducts('electronics')"
-    >
-      Electronics
-    </a>
-  </div>
-  <div class="item">
-    <a
-      [class.active]="selectedFilter === 'jewelery'"
-      (click)="filterProducts('jewelery')"
-    >
-      Jewelery
+      {{ filter }}
     </a>
   </div>
 </div>
@@ -81,6 +52,10 @@
     </ng-container>
   </div>
   <div class="spinner" *ngIf="showSpinner">
-    <mat-progress-spinner  mode="indeterminate" color="warn" diameter="60"></mat-progress-spinner>
+    <mat-progress-spinner
+      mode="indeterminate"
+      color="warn"
+      diameter="60"
+    ></mat-progress-spinner>
   </div>
 </div>

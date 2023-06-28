@@ -3,6 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 
 import { SharedService } from './shared.service';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+import users from 'local-db/user';
 
 describe('SharedService', () => {
   let service: SharedService;
@@ -23,8 +25,8 @@ describe('SharedService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      providers: [SharedService],
+      imports: [RouterTestingModule, ToastrModule.forRoot()],
+      providers: [SharedService, ToastrService],
     });
     service = TestBed.inject(SharedService);
     router = TestBed.inject(Router);
@@ -38,5 +40,22 @@ describe('SharedService', () => {
     expect(router.navigate).toHaveBeenCalledWith([`/product/${product.id}`], {
       state: { item: product },
     });
+  });
+
+  it('should find user by email and set the logged in user', () => {
+    const email = 'bruno@email.com';
+    const user = {
+      id: 1,
+      password: 'bruno',
+      email: 'bruno@email.com',
+      name: 'Bruno',
+    };
+    service.users = [user];
+
+    service.findUserByEmail(email);
+    expect(service.loggedInUser).toEqual(user);
+
+    const storedUser = localStorage.getItem('user');
+    expect(storedUser).toBe(user.name);
   });
 });

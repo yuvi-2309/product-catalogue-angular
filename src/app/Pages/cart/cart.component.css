@@ -155,7 +155,6 @@ tr.table-row:not(:first-child) {
 }
 
 @media screen and (max-width: 768px) {
-  
   .col-md-9,
   .col-md-3 {
     width: 100%;
@@ -163,28 +162,28 @@ tr.table-row:not(:first-child) {
     box-shadow: none;
     margin-bottom: 20px;
   }
-  
+
   .card {
     margin: 10px;
     margin-bottom: 20px;
     padding: 15px;
   }
-  
+
   .col-md-3 {
     margin-left: 0;
   }
-  
+
   .center .btn {
     margin-top: 10px;
     padding: 10px 20px;
     font-size: 12px;
   }
-  
+
   h3 {
     font-size: 14px;
   }
 
-  p{
+  p {
     display: none;
   }
 
@@ -192,7 +191,7 @@ tr.table-row:not(:first-child) {
     align-items: center;
   }
 
- span{
-    margin-right:15px ;
+  span {
+    margin-right: 15px;
   }
 }

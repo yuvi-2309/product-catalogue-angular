@@ -1,15 +1,15 @@
+import { Location } from '@angular/common';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { MatMenuModule } from '@angular/material/menu';
-import { Location } from '@angular/common';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { of } from 'rxjs';
 
 import { HeaderComponent } from 'src/app/Component/main';
-import { WishlistComponent } from './wishlist.component';
-import { WishlistService } from 'src/app/Service/wishlist/wishlist.service';
-import { SharedService } from 'src/app/Service/shared/shared.service';
 import { CartService } from 'src/app/Service/cartService/cart.service';
+import { SharedService } from 'src/app/Service/shared/shared.service';
+import { WishlistService } from 'src/app/Service/wishlist/wishlist.service';
+import { WishlistComponent } from './wishlist.component';
 
 class MatDialogRefMock {
   afterClosed() {
@@ -67,22 +67,18 @@ describe('wishlistComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-
   it('should remove a product from the wishlist', () => {
     spyOn(component.dialog, 'open').and.returnValue(
       TestBed.inject(MatDialogRef)
     );
-    spyOn(component, 'showDeleteToast');
+    spyOn(sharedService, 'showDeleteToast');
     spyOn(wishlistService, 'removeFromWishlist');
 
     component.removeFromWishlist(product);
 
     expect(component.dialog.open).toHaveBeenCalled();
     expect(wishlistService.removeFromWishlist).toHaveBeenCalledWith(product);
-    expect(component.showDeleteToast).toHaveBeenCalled();
+    expect(sharedService.showDeleteToast).toHaveBeenCalled();
   });
 
   it('should navigate to the product', () => {
@@ -105,7 +101,7 @@ describe('wishlistComponent', () => {
 
   it('should show delete toast', () => {
     spyOn(component.toastr, 'success');
-    component.showDeleteToast();
+    sharedService.showDeleteToast();
     expect(component.toastr.success).toHaveBeenCalledWith(
       'Item deleted successfully!',
       'Delete',

@@ -1,15 +1,16 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Location } from '@angular/common';
-import { MatMenuModule } from '@angular/material/menu';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
 
-import { ProductComponent } from './product.component';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import {
   HeaderComponent,
   ProductButtonComponent,
   WishlistButtonComponent,
 } from 'src/app/Component/main';
 import { CartService } from 'src/app/Service/cartService/cart.service';
+import { ProductComponent } from './product.component';
 
 describe('ProductComponent', () => {
   let component: ProductComponent;
@@ -36,8 +37,9 @@ describe('ProductComponent', () => {
         ProductButtonComponent,
         WishlistButtonComponent,
       ],
-      imports: [MatMenuModule, FormsModule],
-      providers: [CartService],
+
+      imports: [MatMenuModule, FormsModule, ToastrModule.forRoot()],
+      providers: [CartService, ToastrService],
     });
     fixture = TestBed.createComponent(ProductComponent);
     component = fixture.componentInstance;

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 
 import { Product } from 'src/app/Interfaces/interface';
 import { CartService } from 'src/app/Service/cartService/cart.service';
@@ -24,7 +24,7 @@ export class ProductComponent implements OnInit {
     this.cartService.addToCart(product);
   }
 
-  // Function to navigate to the previous route 
+  // Function to navigate to the previous route
   navigateToPreviousRoute(): void {
     this.location.back();
   }

@@ -4,13 +4,14 @@ import {
   fakeAsync,
   tick,
 } from '@angular/core/testing';
-import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
+import { MatMenuModule } from '@angular/material/menu';
 import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import { HeaderComponent } from './header.component';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/Service/cartService/cart.service';
+import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
@@ -21,8 +22,13 @@ describe('HeaderComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [HeaderComponent],
-      imports: [MatMenuModule, FormsModule, RouterTestingModule],
-      providers: [CartService],
+      imports: [
+        MatMenuModule,
+        FormsModule,
+        RouterTestingModule,
+        ToastrModule.forRoot(),
+      ],
+      providers: [CartService, ToastrService],
     });
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;

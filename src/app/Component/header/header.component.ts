@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { CartService } from 'src/app/Service/cartService/cart.service';
 import { SharedService } from 'src/app/Service/shared/shared.service';
@@ -12,6 +13,9 @@ import { SharedService } from 'src/app/Service/shared/shared.service';
 export class HeaderComponent {
   totalItem: number = 0;
   searchTerm!: string;
+  private subscription: Subscription;
+  user: string;
+
   constructor(
     private cartService: CartService,
     private router: Router,
@@ -20,7 +24,8 @@ export class HeaderComponent {
 
   // ngOnInit method to get the products from the cartService
   ngOnInit(): void {
-    this.cartService.getProducts().subscribe((response) => {
+    this.user = localStorage.getItem('user');
+    this.subscription = this.cartService.getProducts().subscribe((response) => {
       this.totalItem = response.length;
     });
   }
@@ -42,5 +47,10 @@ export class HeaderComponent {
   signOut(): void {
     this.router.navigate(['/login']);
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) this.subscription.unsubscribe();
   }
 }

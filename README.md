@@ -1,9 +1,7 @@
 # Product Catalogue
-
 This repository contains the source code for a product catalogue application. The application is built using Angular framework.
 
-# Steps to start the application
-
+## Steps to start the application
 - Install the node modules using "npm install"
 - Install the necessary dependencies
 - Open two terminals

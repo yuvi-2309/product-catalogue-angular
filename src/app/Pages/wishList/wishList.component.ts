@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 
-import { CartService } from 'src/app/Service/cartService/cart.service';
-import { WishlistService } from 'src/app/Service/wishlist/wishlist.service';
-import { SharedService } from 'src/app/Service/shared/shared.service';
-import { Product } from 'src/app/Interfaces/interface';
 import { DialogComponent } from 'src/app/Component/dialog/dialog.component';
+import { Product } from 'src/app/Interfaces/interface';
+import { CartService } from 'src/app/Service/cartService/cart.service';
+import { SharedService } from 'src/app/Service/shared/shared.service';
+import { WishlistService } from 'src/app/Service/wishlist/wishlist.service';
 
 @Component({
   selector: 'app-wishlist',
@@ -19,6 +20,7 @@ export class WishlistComponent {
   buttonStates: boolean[] = [];
   filterCategory: Product[] = [];
   searchKey: string = '';
+  private subscription: Subscription;
 
   constructor(
     private wishlistService: WishlistService,
@@ -32,7 +34,7 @@ export class WishlistComponent {
   // Function to get the wishlist from the wishlist service and get the search from the cart service
   ngOnInit(): void {
     this.wishlist = this.wishlistService.getWishlist();
-    this.cartService.search.subscribe((value: string) => {
+    this.subscription = this.cartService.search.subscribe((value: string) => {
       this.searchKey = value;
     });
 
@@ -53,15 +55,8 @@ export class WishlistComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.wishlistService.removeFromWishlist(product);
-        this.showDeleteToast();
+        this.sharedService.showDeleteToast();
       }
-    });
-  }
-
-  // Function to show the delete toast
-  showDeleteToast() {
-    this.toastr.success('Item deleted successfully!', 'Delete', {
-      closeButton: true,
     });
   }
 
@@ -84,5 +79,8 @@ export class WishlistComponent {
   // Function to make isInputVisible true once the component gets destroyed
   ngOnDestroy() {
     this.sharedService.isInputVisible = true;
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }
